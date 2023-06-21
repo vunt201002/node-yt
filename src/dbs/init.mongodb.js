@@ -20,7 +20,9 @@
 
 const mongoose = require('mongoose');
 const { countConnect } = require('../helpers/check.connect');
-const connectionString = 'mongodb://127.0.0.1:27017/';
+const { db: { host, name, port } } = require('../configs/config.mongodb');
+const connectionString = `mongodb://${host}:${[port]}/${name}`;
+console.log(connectionString);
 
 class Database {
     constructor() {
@@ -41,7 +43,7 @@ class Database {
                 useUnifiedTopology: true
             })
             .then(_ => {
-                console.log('Connected to mongoDB')
+                console.log(`Connected to mongoDB`);
                 countConnect();
             })
             .catch(err => {

@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const compression = require('compression');
+const dotenv = require('dotenv');
 
 const app = express();
 
@@ -9,6 +10,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(compression());
+dotenv.config();
 
 // init db
 require('./dbs/init.mongodb');
